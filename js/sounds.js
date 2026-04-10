@@ -22,6 +22,12 @@ SoundArray.prototype.preload = function() {
     preloadAudio(this.name);
     return;
   }
+  var lazyLoad = this.name === 'score' || this.name === 'hurt';
+  if (lazyLoad) {
+    var key = this.name + '/1';
+    preloadAudio(key);
+    return;
+  }
 
   var key, name = this.name;
   for (var i = 0, l = this.count; i < l; i++) {
@@ -42,7 +48,24 @@ SoundArray.prototype.create = function() {
     this.count = 1;
     return;
   }
+  var lazyLoad = this.name === 'score' || this.name === 'hurt';
+  if (lazyLoad) {
+    var key = this.name + '/1';
+    this.sounds[0] = this.createSound(key);
+    return;
+  }
 
+  var key, name = this.name;
+  for (var i = 0, l = this.count; i < l; i++) {
+    key = name + '/' + (i + 1);
+    this.sounds[i] = this.createSound(key);
+  }
+};
+
+SoundArray.prototype.lazyLoad = function() {
+  if (this.sounds.length > 0 && this.sounds[0]) {
+    return;
+  }
   var key, name = this.name;
   for (var i = 0, l = this.count; i < l; i++) {
     key = name + '/' + (i + 1);
@@ -92,6 +115,9 @@ SoundArray.prototype.playSound = function() {
 SoundArray.prototype.play = function() {
   this.manuallyStopped = false;
   this.random();
+  if (this.name === 'score' || this.name === 'hurt') {
+    this.lazyLoad();
+  }
   this.playSound();
   if (settings.debug)
     console.log('sound', this.name, this.currentIndex + 1);
@@ -100,6 +126,9 @@ SoundArray.prototype.play = function() {
 SoundArray.prototype.playCustom = function(id) {
   this.manuallyStopped = true;
   this.currentIndex = id - 1;
+  if (this.name === 'score' || this.name === 'hurt') {
+    this.lazyLoad();
+  }
   this.playSound();
 };
 

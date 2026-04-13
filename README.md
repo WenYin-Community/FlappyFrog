@@ -5,7 +5,7 @@
 
 ## 游玩
 
-在线地址: https://wenyinos.github.io/FlappyFrog
+在线地址: https://WenYin-Community.github.io/FlappyFrog
 
 ## 优化
 

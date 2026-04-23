@@ -2,6 +2,10 @@
 
 基于 Phaser 2.x 的浏览器游戏，使用 Vite 构建。
 
+## 🎮 演示站点
+
+[https://wenyin-community.github.io/FlappyFrog/](https://wenyin-community.github.io/FlappyFrog/)
+
 ## 快速开始
 
 ```bash

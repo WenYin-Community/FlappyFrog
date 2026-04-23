@@ -1,0 +1,17 @@
+{
+  "name": "flappyfrog",
+  "version": "2.0.0",
+  "description": "Flappy Frog - 基于 Phaser 的现代浏览器游戏",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "vite": "^8.0.10"
+  }
+}
